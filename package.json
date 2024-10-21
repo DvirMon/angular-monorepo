@@ -54,7 +54,7 @@
     "@angular/cli": "18.0.3",
     "@angular/compiler-cli": "18.1.1",
     "@angular/language-service": "18.1.1",
-    "@ngrx/eslint-plugin": "^18.0.2",
+    "@ngrx/eslint-plugin": "^18.1.0",
     "@nrwl/workspace": "19.5.7",
     "@nx/cypress": "19.5.7",
     "@nx/eslint": "19.5.7",
