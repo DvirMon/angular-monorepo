@@ -26,6 +26,8 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { MatSelect } from '@angular/material/select';
+import { getFormKeys } from '@dom/components/form/helpers';
+import { FormAutocompleteComponent } from '@dom/components/form/inputs/form-autocomplete';
 import { WritableStateSource, patchState, signalState } from '@ngrx/signals';
 import { DropdownModule } from 'primeng/dropdown';
 import { Observable, of } from 'rxjs';
@@ -40,8 +42,6 @@ import {
 } from '../../shared/options.helper';
 import { FiltersDataService } from './data.service';
 import { mapToString } from './helpers';
-import { getFormKeys } from '@dom/components/form/helpers';
-import { FormAutocompleteComponent } from '@dom/components/form/inputs/form-autocomplete';
 
 interface Filters {
   book1: FormControl<Book>;

@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { UserCredential } from '@angular/fire/auth';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, WritableStateSource } from '@ngrx/signals';
