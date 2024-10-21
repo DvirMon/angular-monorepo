@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - apps/travel-on/**
+  workflow_dispatch:  # This enables manual triggering of the workflow
+
 
 permissions:
   actions: read
