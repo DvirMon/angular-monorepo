@@ -48,17 +48,15 @@
         {{ place().destination.city }},
         {{ place().destination.country }}
       </mat-card-title>
-      <!-- <mat-card-subtitle>{{
-        place().price | currency : 'USD' : 'symbol' : '1.0-0'
-      }}</mat-card-subtitle> -->
+      >
       <to-place-card-button
         (changed)="onSelectedChanged($event)"
         [selected]="selected()"
       ></to-place-card-button>
 
-      <button (click)="onEdit()" mat-icon-button>
+      <!-- <button (click)="onEdit()" mat-icon-button>
         <mat-icon fontIcon="edit"></mat-icon>
-      </button>
+      </button> -->
     </mat-card-header>
     <mat-card-content>
       <section class="activities">
