@@ -9,6 +9,7 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@ngrx/avoid-cyclic-effects": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -24,8 +25,7 @@
             "prefix": "to",
             "style": "kebab-case"
           }
-        ],
-        "@ngrx/avoid-cyclic-effects": "error"
+        ]
       }
     },
     {

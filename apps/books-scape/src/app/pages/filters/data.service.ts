@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, take, tap } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 import { Book, Item, VolumeInfo } from '../../books/books';
 import { VolumesHttpService } from '../../books/http.service';
