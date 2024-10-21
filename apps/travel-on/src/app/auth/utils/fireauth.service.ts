@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserCredential } from '@angular/fire/auth';
 import { defer, from, Observable, switchMap } from 'rxjs';
-import { debugTap } from '../../shared/operators/debug';
 
 export interface FirebaseError {
   code: string;

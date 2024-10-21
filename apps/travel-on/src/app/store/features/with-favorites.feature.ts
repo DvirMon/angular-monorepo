@@ -70,7 +70,6 @@ function mapVacationIdsToRecord(favorite: Favorite): Record<string, boolean> {
   }
 }
 
-
-function isObjectEmpty(obj: object) :boolean {
+function isObjectEmpty(obj: object): boolean {
   return Object.keys(obj).length === 0;
 }

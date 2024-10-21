@@ -76,8 +76,6 @@ export class EditPlacesFormComponent implements OnInit {
     console.log('submit', this.placesForm.value);
   }
 
-  onFileSelected(event: unknown): void {}
-
   compareWithCountries(o1: string, o2: string): boolean {
     return compareString(o1, o2);
   }
