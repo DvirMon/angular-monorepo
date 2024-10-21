@@ -1,4 +1,4 @@
-import { environment } from 'apps/travel-on/src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
