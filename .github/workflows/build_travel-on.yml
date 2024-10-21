@@ -32,11 +32,7 @@ jobs:
       # - run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build"
       # Build Specific Angular App
       - name: Build Specific Angular App
-        run: npx nx build travel-on --prod --output-path=public/travel-on
-
-        # Check Build Output (Optional Debugging Step)
-      - name: List Build Directory
-        run: ls -alh public/travel-on
+        run: npx nx build travel-on --prod --skip-nx-cache --output-path=public/travel-on
 
         # Connect Project to Firebase
       - name: Configure Firebase Hosting Target

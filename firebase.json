@@ -22,6 +22,12 @@
       "frameworksBackend": {
         "region": "europe-west1"
       },
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
