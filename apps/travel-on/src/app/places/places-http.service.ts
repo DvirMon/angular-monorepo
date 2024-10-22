@@ -13,6 +13,6 @@ export class PlacesHttpService {
 
   public loadPlaces(): Observable<Places[]> {
     const url = `${this.#apiUrl}/places`;
-    return this.#http.get<Places[]>(url).pipe(delay(3000));
+    return this.#http.get<Places[]>(url);
   }
 }
