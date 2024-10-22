@@ -19,7 +19,10 @@ import { MatDividerModule } from '@angular/material/divider';
     justify-content: center;
     align-items: center;
 
-    mat-divider {
+   
+  }
+  
+  mat-divider {
       width: 100%;
     }
 
@@ -28,7 +31,8 @@ import { MatDividerModule } from '@angular/material/divider';
       flex-shrink: 0;
       text-align: center;
     }
-  } `
+  
+  `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 

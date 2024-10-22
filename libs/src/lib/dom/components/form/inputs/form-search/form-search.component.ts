@@ -16,7 +16,7 @@ export interface SearchMediaResultsData {
 }
 
 @Component({
-  selector: 'dom-form-search-input',
+  selector: 'dom-form-search',
   standalone: true,
   imports: [
     CommonModule,
@@ -25,10 +25,10 @@ export interface SearchMediaResultsData {
     MatInputModule,
     MatFormFieldModule,
   ],
-  templateUrl: './search-input.component.html',
-  styleUrls: ['./search-input.component.scss'],
+  templateUrl: './form-search.component.html',
+  styleUrls: ['./form-search.component.scss'],
 })
-export class SearchInputComponent {
+export class FormSearchComponent {
   control: InputSignal<FormControl<string>> =
     input.required<FormControl<string>>();
 

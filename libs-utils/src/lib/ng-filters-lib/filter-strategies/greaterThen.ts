@@ -2,7 +2,7 @@ import { isNumber, isDate } from './compare.helpers';
 import { FilterOperation } from '../filter.types';
 import { FilterStrategy } from './strategies.types';
 
-export class GreaterThanStrategy<T> implements FilterStrategy<T> {
+export class GreaterThanStrategy implements FilterStrategy {
   operation: FilterOperation = FilterOperation.GREATER_THAN;
 
   evaluate(value: unknown, criterionValue: unknown): boolean {
