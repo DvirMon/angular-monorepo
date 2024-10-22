@@ -1,9 +1,5 @@
 <div [class]="gridClass()">
-  @if (!isLoaded()) { @for (item of placesSkeleton; track $index) {
-
-  <to-place-skeleton></to-place-skeleton>
-
-  }} @for (item of places(); track item.id) {
+  @defer (when isLoaded()) { @for (item of places(); track item.id) {
 
   <to-places-card
     [place]="item"
@@ -12,5 +8,9 @@
     [isGrid]="isGrid()"
   >
   </to-places-card>
-  }
+  } } @placeholder() { @for (item of placesSkeleton; track $index) {
+
+  <to-place-skeleton></to-place-skeleton>
+
+  } }
 </div>

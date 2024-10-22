@@ -40,6 +40,7 @@ export class PlacesPageComponent implements OnInit {
   #injector = inject(Injector);
   #store = inject(SignalStore);
   #layout = inject(PlacesPageService);
+  
 
   userId = input.required<string>();
 

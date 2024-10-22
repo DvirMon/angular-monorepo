@@ -50,6 +50,7 @@ export function withAuthMethods<_>() {
         service.onLogin(store.user());
       },
       logout(): void {
+        console.log('called');
         patchState(store, initialState);
         service.onLogout();
       },

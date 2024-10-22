@@ -88,9 +88,9 @@ div.overlay {
 dl.activities-list {
   display: flex;
   gap: main.spacing(1);
+  min-height: main.spacing(4);
 
   > dt.activities-item {
-    height: main.spacing(4);
     display: flex;
     justify-content: center;
     align-items: center;
