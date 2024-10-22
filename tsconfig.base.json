@@ -56,11 +56,11 @@
       "@dom/components/table": ["libs/src/lib/dom/components/table/index.ts"],
       "@dom/directives": ["libs/src/lib/dom/directives/index.ts"],
       "@dom/helpers": ["libs/src/lib/dom/helpers/index.ts"],
-      "ng-filters-service/abstract-filters": [
-        "libs-utils/src/lib/ng-filters-lib/abstract-filters.ts"
-      ],
       "ng-filters-service/abstract-evaluate": [
         "libs-utils/src/lib/ng-filters-lib/abstract-evaluate.ts"
+      ],
+      "ng-filters-service/abstract-filters": [
+        "libs-utils/src/lib/ng-filters-lib/abstract-filters.ts"
       ],
       "ng-filters-service/evaluate-filters": [
         "libs-utils/src/lib/ng-filters-lib/evaluate-filter.service.ts"
@@ -68,11 +68,11 @@
       "ng-filters-service/filters.types": [
         "libs-utils/src/lib/ng-filters-lib/filter.types.ts"
       ],
-      "ng-filters-service/strategies.types": [
-        "libs-utils/src/lib/ng-filters-lib/filter-strategies/strategies.types.ts"
-      ],
       "ng-filters-service/providers": [
         "libs-utils/src/lib/ng-filters-lib/providers.ts"
+      ],
+      "ng-filters-service/strategies.types": [
+        "libs-utils/src/lib/ng-filters-lib/filter-strategies/strategies.types.ts"
       ]
     }
   },
