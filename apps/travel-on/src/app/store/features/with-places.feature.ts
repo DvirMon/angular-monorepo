@@ -1,4 +1,9 @@
-import { signalStoreFeature, withMethods, withState } from '@ngrx/signals';
+import {
+  signalStoreFeature,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { Places } from '../../places/places.model';
 import {
   EntityLoader,
@@ -7,6 +12,7 @@ import {
   loadSlice,
   Entity,
 } from '@dom/helpers';
+import { computed } from '@angular/core';
 
 interface PlacesState {
   places: Places[];
@@ -26,6 +32,9 @@ export function withPlaces(Loader: LoaderService<PlacesLoader>) {
       return {
         loadPlaces: loadSlice<void>(loader, store, SLICE),
       };
-    })
+    }),
+    withComputed(({ places }) => ({
+      isLoaded: computed(() => places.length > 0),
+    }))
   );
 }
