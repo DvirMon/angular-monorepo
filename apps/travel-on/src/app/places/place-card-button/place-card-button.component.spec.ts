@@ -1,17 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PlaceCardButtonComponent } from './place-card-button.component';
 
-import { VacationCardButtonComponent } from './vacation-card-button.component';
+import { ComponentRef } from '@angular/core';
 
-describe('VacationCardButtonComponent', () => {
-  let component: VacationCardButtonComponent;
-  let fixture: ComponentFixture<VacationCardButtonComponent>;
+describe('PlaceCardButtonComponent', () => {
+  let component: PlaceCardButtonComponent;
+  let fixture: ComponentFixture<PlaceCardButtonComponent>;
+  let componentRef: ComponentRef<PlaceCardButtonComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [VacationCardButtonComponent]
+      imports: [PlaceCardButtonComponent]
     });
-    fixture = TestBed.createComponent(VacationCardButtonComponent);
+    fixture = TestBed.createComponent(PlaceCardButtonComponent);
     component = fixture.componentInstance;
+    componentRef = fixture.componentRef;
+
+    componentRef.setInput('place', { id: 1, name: 'test' });
+    componentRef.setInput('selected', false);
+
     fixture.detectChanges();
   });
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterFormComponent } from './register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RegisterFormComponent', () => {
   let component: RegisterFormComponent;
@@ -8,7 +9,7 @@ describe('RegisterFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RegisterFormComponent]
+      imports: [RegisterFormComponent, BrowserAnimationsModule],
     });
     fixture = TestBed.createComponent(RegisterFormComponent);
     component = fixture.componentInstance;

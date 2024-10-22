@@ -10,7 +10,6 @@ import {
   runInInjectionContext,
 } from '@angular/core';
 import { FloatingButtonComponent } from '@dom/components/floating-button';
-import { ParallaxDirective } from '@dom/directives';
 import { AuthStore } from '../../auth/store/store';
 import {
   PlacesListComponent,
@@ -30,7 +29,6 @@ import { PlacesPageService } from './places.service';
     PlacesHeaderComponent,
     PlacesListComponent,
     FloatingButtonComponent,
-    ParallaxDirective,
   ],
   templateUrl: './places.component.html',
   styleUrls: ['./places.component.scss'],

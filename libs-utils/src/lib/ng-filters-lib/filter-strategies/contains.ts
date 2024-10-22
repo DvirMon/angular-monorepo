@@ -2,7 +2,7 @@ import { isValidString } from './compare.helpers';
 import { FilterOperation } from '../filter.types';
 import { FilterStrategy } from './strategies.types';
 
-export class ContainsStrategy<T> implements FilterStrategy<T> {
+export class ContainsStrategy<T> implements FilterStrategy {
   operation: FilterOperation = FilterOperation.CONTAINS;
 
 
