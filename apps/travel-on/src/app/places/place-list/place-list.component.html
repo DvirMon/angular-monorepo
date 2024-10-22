@@ -1,14 +1,16 @@
 <div [class]="gridClass()">
+  @if (!isLoaded()) { @for (item of placesSkeleton; track $index) {
+
   <to-place-skeleton></to-place-skeleton>
-  @for (item of places(); track item.id) {
-  <section>
-    <!-- <to-places-card
-      [place]="item"
-      [selected]="selection()[item.id]"
-      (selectedChanged)="onSelectedChanged($event)"
-      [isGrid]="isGrid()"
-    >
-    </to-places-card> -->
-  </section>
+
+  }} @for (item of places(); track item.id) {
+
+  <to-places-card
+    [place]="item"
+    [selected]="selection()[item.id]"
+    (selectedChanged)="onSelectedChanged($event)"
+    [isGrid]="isGrid()"
+  >
+  </to-places-card>
   }
 </div>

@@ -16,7 +16,6 @@ import {
   PlacesListComponent,
   SelectionListChange,
 } from '../../places/place-list/place-list.component';
-import { PlaceSkeletonComponent } from '../../places/place-skeleton/place-skeleton.component';
 import { PlacesHeaderComponent } from '../../places/places-header/places-header.component';
 import { Places } from '../../places/places.model';
 import { SignalStore } from '../../store/store';
@@ -30,7 +29,6 @@ import { PlacesPageService } from './places.service';
     JsonPipe,
     PlacesHeaderComponent,
     PlacesListComponent,
-    PlaceSkeletonComponent,
     FloatingButtonComponent,
     ParallaxDirective,
   ],

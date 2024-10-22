@@ -12,7 +12,7 @@ export const SignalStore = signalStore(
   withFavorites(FavoriteHttpService),
   withHooks((store) => ({
     onInit() {
-      // store.loadPlaces();
+      store.loadPlaces();
     },
   }))
 );

@@ -1,5 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, computed, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  output,
+} from '@angular/core';
 import { FavoriteSelection } from '../../store/features/with-favorites.feature';
 import {
   PlacesCardComponent,
@@ -16,13 +21,17 @@ export interface SelectionListChange {
 @Component({
   selector: 'to-places-list',
   standalone: true,
-  imports: [CommonModule, PlaceSkeletonComponent, PlacesCardComponent],
+  imports: [PlaceSkeletonComponent, PlacesCardComponent],
   templateUrl: './place-list.component.html',
   styleUrls: ['./place-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlacesListComponent {
+  placesSkeleton = new Array(6);
+
   places = input.required<Places[]>();
   selection = input.required<Record<string, boolean>>();
+  isLoaded = input.required<boolean>();
   isGrid = input<boolean>(true);
 
   selectionChanged = output<SelectionListChange>();

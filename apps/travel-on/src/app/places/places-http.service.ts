@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { API_URL } from '../shared/tokens';
 import { Places } from './places.model';
 
@@ -13,6 +13,6 @@ export class PlacesHttpService {
 
   public loadPlaces(): Observable<Places[]> {
     const url = `${this.#apiUrl}/places`;
-    return this.#http.get<Places[]>(url).pipe(delay(3000));
+    return this.#http.get<Places[]>(url);
   }
 }
