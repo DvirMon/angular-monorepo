@@ -50,6 +50,9 @@ export function withFavorites(Loader: LoaderService<FavoritesLoader>) {
           })
         )
       ),
+      removeFavorite(): void {
+        patchState(store, { favorite: {} as Favorite });
+      },
     })),
     withComputed(({ favorite }) => ({
       favoriteMap: computed(() => mapVacationIdsToRecord(favorite())),

@@ -12,6 +12,7 @@ export const AppStore = signalStore(
   withMethods((store) => ({
     clearStore(): void {
       store.removePlaces();
+      store.removeFavorite();
     },
   }))
 );
