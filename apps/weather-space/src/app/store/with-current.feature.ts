@@ -6,7 +6,7 @@ import {
   createLoader,
   loadEntities,
   onLoadCollection,
-} from '@dom';
+} from '@dom/helpers';
 import { withEntities } from '@ngrx/signals/entities';
 import { CurrentWeather } from '../weather/models/current-weather-result';
 

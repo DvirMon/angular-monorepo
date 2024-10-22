@@ -27,7 +27,7 @@ export class FavoritesPageComponent {
   constructor(private router: Router) {
     this.items = this.#store.favoritesEntityMap;
     this.isMetric = this.#store.isMetric;
-    this.hasFavorites = this.#store.hasFavorites
+    this.hasFavorites = this.#store.hasFavorites;
   }
 
   public onSelectionChanged({ id }: FavoriteEntity): void {

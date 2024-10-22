@@ -8,7 +8,7 @@ import {
   createLoader,
   loadEntities,
   onLoadCollection,
-} from '@dom';
+} from '@dom/helpers';
 import {
   FutureWeather,
   FutureWeatherArgs,

@@ -5,7 +5,7 @@ import {
   createLoader,
   loadEntities,
   onLoadCollection,
-} from '@dom';
+} from '@dom/helpers';
 import {
   patchState,
   signalStoreFeature,
