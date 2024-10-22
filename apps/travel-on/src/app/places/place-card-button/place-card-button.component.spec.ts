@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PlaceCardButtonComponent } from './place-card-button.component';
 
 import { ComponentRef } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('PlaceCardButtonComponent', () => {
   let component: PlaceCardButtonComponent;
@@ -10,13 +11,14 @@ describe('PlaceCardButtonComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PlaceCardButtonComponent]
+      imports: [PlaceCardButtonComponent],
+      providers : [provideAnimations()]
     });
     fixture = TestBed.createComponent(PlaceCardButtonComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
 
-    componentRef.setInput('place', { id: 1, name: 'test' });
+
     componentRef.setInput('selected', false);
 
     fixture.detectChanges();
