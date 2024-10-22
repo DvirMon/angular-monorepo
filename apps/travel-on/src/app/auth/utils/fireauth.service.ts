@@ -19,15 +19,6 @@ export class FireAuthService {
     );
   }
 
-  public getToken(): Observable<string | undefined> {
-    return defer(() =>
-      import('firebase/auth').then((firebase) => {
-        const auth = firebase.getAuth();
-        return auth.currentUser?.getIdToken();
-      })
-    );
-  }
-
   public createUserWithEmailAndPassword$(
     email: string,
     password: string
@@ -47,7 +38,9 @@ export class FireAuthService {
     return this.#loadFirebaseAuth().pipe(
       switchMap(({ getAuth, signInWithPopup, GoogleAuthProvider }) => {
         const auth = getAuth();
-        return from(signInWithPopup(auth, new GoogleAuthProvider()));
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        return from(signInWithPopup(auth, provider));
       })
     );
   }
