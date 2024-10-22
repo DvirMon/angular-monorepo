@@ -1,11 +1,10 @@
+import { TestBed } from '@angular/core/testing';
 import { EvaluateFilterService } from '../evaluate-filter.service';
 import { FilterStrategyService } from '../filter-strategy.service';
 import {
   EvaluateConfig,
-  FilterCriteria,
-  LOGICAL_OPERATOR,
+  LOGICAL_OPERATOR
 } from '../filter.types';
-import { TestBed } from '@angular/core/testing';
 
 // Fake for FilterStrategyService
 class FakeFilterStrategyService {
