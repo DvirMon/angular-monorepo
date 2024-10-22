@@ -39,6 +39,11 @@ export function getUserEmailFromUrl(
   );
 }
 
+export function mapToUID() {
+  return (source: Observable<UserCredential>): Observable<string> =>
+    source.pipe(map((credential: UserCredential) => credential.user.uid));
+}
+
 export function mapFirebaseCredentials(): OperatorFunction<
   UserCredential,
   User

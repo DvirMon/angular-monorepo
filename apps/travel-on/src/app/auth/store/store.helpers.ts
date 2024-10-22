@@ -2,7 +2,7 @@ import { UserCredential } from '@angular/fire/auth';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, WritableStateSource } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { exhaustMap, Observable, pipe, switchMap } from 'rxjs';
+import { exhaustMap, map, Observable, pipe, switchMap } from 'rxjs';
 import { SignInService } from '../../pages/login/sign-in.service';
 import { RegisterService } from '../../pages/register/register.service';
 import { ResetService } from '../../pages/reset/reset.service';
@@ -28,9 +28,14 @@ export function signIn(
   return rxMethod<SignInEvent>(
     pipe(
       switchMap((value) =>
-        service
-          .signIn$(value)
-          .pipe(mapFirebaseCredentials(), handleLoadUserResponse(store, event))
+        service.signIn$(value).pipe(
+          map((credential: UserCredential) => credential.user.uid),
+          switchMap((uid: string) =>
+
+            // TODO : save user after gmail login?
+            service.getUser(uid).pipe(handleLoadUserResponse(store, event))
+          )
+        )
       )
     )
   );
