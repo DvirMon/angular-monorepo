@@ -12,7 +12,11 @@ describe('LoginFormComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [LoginFormComponent],
-      providers: [ provideAnimations(), provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        provideAnimations(),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     });
     fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
