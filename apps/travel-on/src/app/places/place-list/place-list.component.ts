@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, output } from '@angular/core';
+import { FavoriteSelection } from '../../store/features/with-favorites.feature';
 import {
   PlacesCardComponent,
   SelectChangedEvent,
 } from '../place-card/places-card.component';
+import { PlaceSkeletonComponent } from '../place-skeleton/place-skeleton.component';
 import { Places } from '../places.model';
-import { FavoriteSelection } from '../../store/features/with-favorites.feature';
 
 export interface SelectionListChange {
   source: PlacesListComponent;
@@ -15,7 +16,7 @@ export interface SelectionListChange {
 @Component({
   selector: 'to-places-list',
   standalone: true,
-  imports: [CommonModule, PlacesCardComponent],
+  imports: [CommonModule, PlaceSkeletonComponent, PlacesCardComponent],
   templateUrl: './place-list.component.html',
   styleUrls: ['./place-list.component.scss'],
 })

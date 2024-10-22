@@ -1,0 +1,53 @@
+mat-card.mat-mdc-card.places-grid-card {
+  img.mat-mdc-card-image {
+    position: relative !important;
+  }
+
+  > mat-card-header.mat-mdc-card-header {
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px; // Replacing main.spacing(1) with a typical spacing value
+    padding: 0px 16px; // Replacing main.spacing(2)
+
+    > div.mat-mdc-card-header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; // Replacing main.spacing(1)
+    }
+  }
+
+  .mat-mdc-card-title {
+    display: flex;
+    gap: 16px; // Replacing main.spacing(1)
+    align-items: center;
+    font-size: larger;
+  }
+
+  .mat-mdc-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; // Replacing main.spacing(2)
+    padding: 16px; // Replacing main.spacing(2)
+    padding-top: 8px; // Replacing main.spacing(1)
+  }
+
+  section.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; // Replacing main.spacing(1)
+  }
+
+  .button-skeleton {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .activities-item {
+    margin-bottom: 10px;
+  }
+
+  .schedule {
+    display: flex;
+    flex-direction: column;
+  }
+}

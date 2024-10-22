@@ -1,1 +1,45 @@
-<ngx-skeleton-loader></ngx-skeleton-loader>
+<mat-card class="places-grid-card">
+  <ngx-skeleton-loader
+    [count]="1"
+    class="w-full h-64"
+    [theme]="{ height: '256px' }"
+  ></ngx-skeleton-loader>
+
+  <mat-card-header>
+    <mat-card-title>
+      <ngx-skeleton-loader
+        [count]="1"
+        [theme]="{ height: '20px', width: '250px' }"
+      ></ngx-skeleton-loader>
+    </mat-card-title>
+
+    <div class="button-skeleton">
+      <ngx-skeleton-loader
+        [count]="1"
+        appearance="circle"
+      ></ngx-skeleton-loader>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <section class="activities">
+      <ngx-skeleton-loader
+        [count]="3"
+        [theme]="{ height: '10px', width: '80px', marginRight: '8px' }"
+      ></ngx-skeleton-loader>
+    </section>
+
+    <section class="schedule">
+      <ngx-skeleton-loader
+        [count]="1"
+        [theme]="{ height: '14px', width: '180px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        [count]="1"
+        [theme]="{ height: '14px', width: '180px' }"
+      ></ngx-skeleton-loader>
+    </section>
+  </mat-card-content>
+
+  <mat-card-footer></mat-card-footer>
+</mat-card>

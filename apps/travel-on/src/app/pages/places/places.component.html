@@ -10,19 +10,12 @@
   </header>
   <main>
     <div class="places-content-wrapper w-10/12">
-
-      @if(isLoaded()) {
       <to-places-list
         [places]="places()"
         [selection]="selection()"
         [isGrid]="isGrid()"
         (selectionChanged)="onSelectionChanged($event)"
       ></to-places-list>
-
-      } @else {
-
-      <to-place-skeleton></to-place-skeleton>
-      }
     </div>
   </main>
 </div>
