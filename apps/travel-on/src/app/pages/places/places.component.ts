@@ -48,12 +48,13 @@ export class PlacesPageComponent implements OnInit {
   public readonly places: Signal<Places[]>;
   public readonly selection: Signal<Record<string, boolean>>;
   public readonly isGrid: Signal<boolean>;
+  public readonly isLoaded: Signal<boolean>;
 
   constructor() {
     this.places = this.#store.places;
     this.selection = this.#store.favoriteMap;
+    this.isLoaded = this.#store.isLoaded;
     this.isGrid = this.#layout.getIsGrid();
-
   }
 
   ngOnInit(): void {

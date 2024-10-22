@@ -34,7 +34,7 @@ export function withPlaces(Loader: LoaderService<PlacesLoader>) {
       };
     }),
     withComputed(({ places }) => ({
-      isLoaded: computed(() => places.length > 0),
+      isLoaded: computed(() => places().length > 0),
     }))
   );
 }
