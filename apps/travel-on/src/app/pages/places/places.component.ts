@@ -18,7 +18,7 @@ import {
 } from '../../places/place-list/place-list.component';
 import { PlacesHeaderComponent } from '../../places/places-header/places-header.component';
 import { Places } from '../../places/places.model';
-import { SignalStore } from '../../store/store';
+import { AppStore } from '../../store/store';
 import { updateFavoriteEntity } from './places.helpers';
 import { PlacesPageService } from './places.service';
 
@@ -38,7 +38,7 @@ import { PlacesPageService } from './places.service';
 })
 export class PlacesPageComponent implements OnInit {
   #injector = inject(Injector);
-  #store = inject(SignalStore);
+  #store = inject(AppStore);
   #layout = inject(PlacesPageService);
   
 
@@ -50,13 +50,14 @@ export class PlacesPageComponent implements OnInit {
   public readonly isLoaded: Signal<boolean>;
 
   constructor() {
-    this.places = this.#store.places;
+    this.places = this.#store.placesEntities;
     this.selection = this.#store.favoriteMap;
     this.isLoaded = this.#store.isLoaded;
     this.isGrid = this.#layout.getIsGrid();
   }
 
   ngOnInit(): void {
+    this.#store.loadPlaces();
     this.#store.loadFavorites(this.userId);
   }
 

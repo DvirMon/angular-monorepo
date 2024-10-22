@@ -1,40 +1,53 @@
+import { computed, inject } from '@angular/core';
+import { Entity, EntityLoader, LoaderService } from '@dom/helpers';
+import { tapResponse } from '@ngrx/operators';
 import {
+  patchState,
   signalStoreFeature,
+  type,
   withComputed,
   withMethods,
-  withState,
 } from '@ngrx/signals';
-import { Places } from '../../places/places.model';
 import {
-  EntityLoader,
-  LoaderService,
-  createLoader,
-  loadSlice,
-  Entity,
-} from '@dom/helpers';
-import { computed } from '@angular/core';
+  addEntities,
+  removeAllEntities,
+  withEntities,
+} from '@ngrx/signals/entities';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { EMPTY, pipe, switchMap } from 'rxjs';
+import { PlacesHttpService } from '../../places/places-http.service';
+import { Places } from '../../places/places.model';
 
-interface PlacesState {
-  places: Places[];
-}
+const PLACES_COLLECTION = 'places';
 
-const initialState: PlacesState = { places: [] };
 
-const SLICE = 'places';
-
-type PlacesLoader = EntityLoader<void, Entity, 'loadPlaces'>;
-
-export function withPlaces(Loader: LoaderService<PlacesLoader>) {
+export function withPlaces() {
   return signalStoreFeature(
-    withState(initialState),
-    withMethods((store) => {
-      const loader = createLoader(Loader, 'loadPlaces');
-      return {
-        loadPlaces: loadSlice<void>(loader, store, SLICE),
-      };
-    }),
-    withComputed(({ places }) => ({
-      isLoaded: computed(() => places().length > 0),
+    withEntities({ entity: type<Places>(), collection: PLACES_COLLECTION }),
+  
+    withMethods((store, service = inject(PlacesHttpService)) => ({
+      loadPlaces: rxMethod<void>(
+        pipe(
+          switchMap(() =>
+            service.loadPlaces().pipe(
+              tapResponse({
+                next: (places) =>
+                  patchState(
+                    store,
+                    addEntities(places, { collection: PLACES_COLLECTION })
+                  ),
+                error: () => EMPTY,
+              })
+            )
+          )
+        )
+      ),
+      removePlaces() {
+        patchState(store, removeAllEntities({ collection: PLACES_COLLECTION }));
+      },
+    })),
+    withComputed(({ placesEntities }) => ({
+      isLoaded: computed(() => placesEntities().length > 0),
     }))
   );
 }

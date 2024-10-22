@@ -1,18 +1,17 @@
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
-import { signalStore, withHooks } from '@ngrx/signals';
-import { PlacesHttpService } from '../places/places-http.service';
-import { withPlaces } from './features/with-places.feature';
-import { withFavorites } from './features/with-favorites.feature';
+import { signalStore, withMethods } from '@ngrx/signals';
 import { FavoriteHttpService } from '../favorites/favorite.https.service';
+import { withFavorites } from './features/with-favorites.feature';
+import { withPlaces } from './features/with-places.feature';
 
-export const SignalStore = signalStore(
+export const AppStore = signalStore(
   { providedIn: 'root' },
   withDevtools('store'),
-  withPlaces(PlacesHttpService),
+  withPlaces(),
   withFavorites(FavoriteHttpService),
-  withHooks((store) => ({
-    onInit() {
-      store.loadPlaces();
+  withMethods((store) => ({
+    clearStore(): void {
+      store.removePlaces();
     },
   }))
 );
