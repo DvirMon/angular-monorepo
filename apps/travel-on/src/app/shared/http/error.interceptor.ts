@@ -13,7 +13,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, handle) => {
       } else {
         // Handle other types of errors
         console.error('Error Status:', error.status);
-        console.error('Error Details:', error.message);
+        console.error('Error Details:', error);
       }
       // Throw the error to be handled elsewhere if needed
 

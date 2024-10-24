@@ -16,14 +16,14 @@ export class FavoriteHttpService {
   readonly #http = inject(HttpClient);
 
   // Load favorites for a user
-  public loadFavorites(userId: string): Observable<Favorite> {
+  public loadFavorites(uid: string): Observable<Favorite> {
     return this.#http
-      .get<Favorite | null>(`${this.#url}/${userId}`)
+      .get<Favorite | null>(`${this.#url}/${uid}`)
       .pipe(
         switchMap((favorite: Favorite | null) =>
           iif(
             () => !favorite,
-            this.#createNewFavorite(userId),
+            this.#createNewFavorite(uid),
             of(favorite as Favorite)
           )
         )
@@ -31,8 +31,8 @@ export class FavoriteHttpService {
   }
 
   // Create a new favorite document
-  #createNewFavorite(userId: string): Observable<Favorite> {
-    return this.#http.post<Favorite>(this.#url, { userId });
+  #createNewFavorite(uid: string): Observable<Favorite> {
+    return this.#http.post<Favorite>(this.#url, { uid });
   }
 
   // Update a favorite document
