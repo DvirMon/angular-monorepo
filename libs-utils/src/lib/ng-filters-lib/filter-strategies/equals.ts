@@ -2,7 +2,7 @@ import { isNumber, isDate, isValidString } from './compare.helpers';
 import { FilterOperation } from '../filter.types';
 import { FilterStrategy } from './strategies.types';
 
-export class EqualsStrategy<T> implements FilterStrategy<T> {
+export class EqualsStrategy<T> implements FilterStrategy {
   operation: FilterOperation = FilterOperation.EQUALS;
 
   evaluate(value: unknown, criterionValue: unknown): boolean {

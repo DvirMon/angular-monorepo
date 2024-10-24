@@ -6,3 +6,8 @@ globalThis.ngJest = {
   },
 };
 import 'jest-preset-angular/setup-jest';
+
+// Polyfill for TextDecoder and TextEncoder
+import { TextDecoder, TextEncoder } from 'util';
+
+Object.assign(global, { TextDecoder, TextEncoder });

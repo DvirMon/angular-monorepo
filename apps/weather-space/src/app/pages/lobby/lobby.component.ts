@@ -21,8 +21,9 @@ import {
 import { MatOption } from '@angular/material/core';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
-import { OptionContentDirective } from '@dom';
-import { FormAutocompleteComponent } from '@dom/components';
+
+import { FormAutocompleteComponent } from '@dom/components/form/inputs/form-autocomplete';
+import { OptionContentDirective } from '@dom/directives';
 import { HighLightPipe } from '../../shared/pipes/high-light.pipe';
 import { PluckPipe } from '../../shared/pipes/pluck.pipe';
 import { Store } from '../../store/store';
@@ -144,7 +145,7 @@ export class LobbyPageComponent implements OnInit {
     this.#store.loadFutureWeather(this.futureArgs);
   }
 
-  onOptionSelected(option: AutocompleteOption): void {
+  onOptionSelected(option: any): void {
     this.#store.updateCurrentId(option.id);
   }
 

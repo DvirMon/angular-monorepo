@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - dev
+  workflow_dispatch:  # This enables manual triggering of the workflow
+
 
 permissions:
   actions: read
@@ -36,7 +38,11 @@ jobs:
       - name: Set NX SHA's for Caching
         uses: nrwl/nx-set-shas@v4
 
-      # Lint, Test, Build, and E2E
-      - name: Run Lint, Test, Build, and E2E Targets
-        # run: npx nx affected --target=lint,test,build,e2e-ci
-        run: npx nx affected --target=lint,build
+      # Run Lint, Test, Build, and E2E Targets
+      - name: Run Lint Targets
+        run: |
+          npx nx run-many --target=lint --all
+
+      - name: Run Tests (Optional)
+        run: npx nx run-many --target=test --all
+      

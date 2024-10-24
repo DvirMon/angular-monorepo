@@ -1,13 +1,13 @@
 import { InjectionToken } from '@angular/core';
 import { FilterOperation } from '../filter.types';
 
-export interface FilterStrategy<T> {
+export interface FilterStrategy{
   operation: FilterOperation | string;
   evaluate(value: unknown, criterionValue: unknown): boolean;
   isComparable(value: unknown, criterionValue: unknown): boolean;
 }
 
-export interface RangeFilterStrategy<T> {
+export interface RangeFilterStrategy {
   operation: FilterOperation;
   evaluate(value: unknown, criterionValue: unknown, rangeEnd: unknown): boolean;
   isComparable(
@@ -18,6 +18,6 @@ export interface RangeFilterStrategy<T> {
 }
 
 // Injection token for filter strategies
-export const FILTER_STRATEGIES = new InjectionToken<FilterStrategy<unknown>[]>(
+export const FILTER_STRATEGIES = new InjectionToken<FilterStrategy[]>(
   'FILTER_STRATEGIES'
 );

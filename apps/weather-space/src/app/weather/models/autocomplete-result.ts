@@ -1,5 +1,3 @@
-import { FormOption } from "@dom";
-
 export interface Country {
   ID: string;
   LocalizedName: string;
@@ -20,7 +18,7 @@ export interface AutocompleteMediaResult {
   AdministrativeArea: AdministrativeArea;
 }
 
-export interface AutocompleteOption extends FormOption {
+export interface AutocompleteOption {
   id: number;
   Version: number;
   Type: string;

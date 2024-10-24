@@ -13,8 +13,8 @@ import { FilterOperation } from './filter.types';
   providedIn: 'root', // Register this service as a singleton
 })
 export class FilterStrategyService<T> {
-  #strategies: Map<string, FilterStrategy<T>> = new Map();
-  #strategyFactories: Map<string, () => FilterStrategy<T>> = new Map(); // Lazy-loading strategy factories
+  #strategies: Map<string, FilterStrategy> = new Map();
+  #strategyFactories: Map<string, () => FilterStrategy> = new Map(); // Lazy-loading strategy factories
   #injectedStrategies = inject(FILTER_STRATEGIES, { optional: true });
   #injector = inject(Injector);
 
@@ -28,7 +28,7 @@ export class FilterStrategyService<T> {
     }
   }
 
-  getStrategy(operation: string): FilterStrategy<T> | undefined {
+  getStrategy(operation: string): FilterStrategy | undefined {
     const strategy = this.#strategies.get(operation);
     if (strategy) {
       return strategy;
@@ -36,7 +36,7 @@ export class FilterStrategyService<T> {
     return this.#createStrategy(operation);
   }
 
-  #createStrategy(operation: string): FilterStrategy<T> | undefined {
+  #createStrategy(operation: string): FilterStrategy | undefined {
     const strategyFactory = this.#strategyFactories.get(operation);
 
     if (!strategyFactory && this.#isBuiltInOperation(operation)) {

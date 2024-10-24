@@ -13,12 +13,12 @@ import { BookCardComponent } from '../../books/book-card/book-card.component';
 import { Book } from '../../books/books';
 import { LayoutComponent } from '../../layout/layout.component';
 import { AppStore } from '../../store/store';
-import { SearchInputComponent } from '@dom/components/form/inputs/form-search-input';
+import { FormSearchComponent } from '@dom/components/form/inputs/form-search-input';
 
 @Component({
   selector: 'books-scape-volume-page',
   standalone: true,
-  imports: [JsonPipe, LayoutComponent, BookCardComponent, SearchInputComponent],
+  imports: [JsonPipe, LayoutComponent, BookCardComponent, FormSearchComponent],
   templateUrl: './volumes.component.html',
   styleUrls: ['./volumes.component.scss'],
 })

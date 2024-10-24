@@ -1,35 +1,33 @@
 @use 'variables' as main;
 
-:host {
-  div {
-    height: 100%;
-  }
+div {
+  height: 100%;
+}
 
-  div.login-page-wrapper {
-    background-image: url('../../../assets/images/backgrounds/login.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: grid;
-    grid-template-columns: 0.7fr 1fr;
+div.login-page-wrapper {
+  background-image: url('../../../assets/images/backgrounds/login.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  grid-template-columns: 0.7fr 1fr;
 
-    div.login-wrapper {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      gap: main.spacing(4);
+  div.login-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: main.spacing(4);
 
-      background-color: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
 
-      to-login-form {
-        width: 400px;
-        height: 550px;
-      }
+    to-login-form {
+      width: 400px;
+      height: 550px;
+    }
 
-      dom-card-button {
-        width: 400px;
-      }
+    dom-card-button {
+      width: 400px;
     }
   }
 }

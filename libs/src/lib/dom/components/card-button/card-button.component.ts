@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output
+  output,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -28,17 +28,20 @@ import { RouterModule } from '@angular/router';
     </mat-card-content>
   </mat-card> `,
 
-  styles: `mat-card {
+  styles: `
+  
+  mat-card {
     height: 100%;
     justify-content: center;
-  
-    mat-card-content {
-      padding: 32px;
-  
-      button {
+    
+  }
+
+  mat-card-content {
+      padding: 32px;  
+   }
+
+   button {
         width: 100%;
-      }
-    }
   }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

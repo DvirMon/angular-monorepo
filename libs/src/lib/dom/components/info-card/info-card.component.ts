@@ -12,24 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
     </section>
   `,
 
-  styles: `
-  
-    @mixin flex-center($direction: row, $gap: 1) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: center;
-    align-items: center;
-    gap: #{$gap * 8 + "px"}; 
-  }
-
-  section.info-card-wrapper {
-
-  @include flex-center(column, 2);
-
-    mat-icon { scale: 2; }
-}
-
-  `,
+  styles: ``,
 })
 export class InfoCardComponent {
   @Input() text!: string;

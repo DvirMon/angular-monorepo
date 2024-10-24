@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FloatingButtonComponent } from './floating-button.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('FloatingButtonComponent', () => {
   let component: FloatingButtonComponent;
@@ -8,7 +9,8 @@ describe('FloatingButtonComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FloatingButtonComponent]
+      imports: [FloatingButtonComponent],
+      providers: [{ provide: ActivatedRoute, useValue: {} }],
     });
     fixture = TestBed.createComponent(FloatingButtonComponent);
     component = fixture.componentInstance;

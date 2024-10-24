@@ -8,7 +8,6 @@
       [control]="control"
       (optionSelected)="onOptionSelected($event)"
       (queryChanged)="onQueryChanged($event)"
-      [displayFn]="displayFn"
     >
       <ng-template domOptionContent let-option>
         {{ option | pluck : 'LocalizedName' }},
