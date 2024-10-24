@@ -7,7 +7,7 @@ import { SignInService } from '../../pages/login/sign-in.service';
 import { RegisterService } from '../../pages/register/register.service';
 import { ResetService } from '../../pages/reset/reset.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
-import { AuthDialogEvent, authDialogMap } from '../auth-dialogs';
+import { AuthDialogEvent, authDialogMap } from '../../auth-dialogs';
 import {
   AuthEvent,
   FirebaseError,
@@ -32,12 +32,10 @@ export function signIn(
         service.signIn$(value).pipe(
           map((credential: UserCredential) => credential.user.uid),
           switchMap((uid: string) =>
-
             // TODO : save user after gmail login?
-            service.getUser(uid).pipe(
-              
-              debugTap('user'),
-              handleLoadUserResponse(store, event))
+            service
+              .getUser(uid)
+              .pipe(debugTap('user'), handleLoadUserResponse(store, event))
           )
         )
       )

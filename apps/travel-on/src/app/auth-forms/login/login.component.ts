@@ -29,7 +29,11 @@ import { MatInput } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { EmailAndPasswordSignIn, SignInEvent, SignInMethod } from '../../utils';
+import {
+  EmailAndPasswordSignIn,
+  SignInEvent,
+  SignInMethod,
+} from '../../auth/utils';
 
 import { DividerHeaderComponent } from '@dom/components/divider-header';
 import { getFormKeys } from '@dom/components/form/helpers';
@@ -37,7 +41,7 @@ import { FormInputComponent } from '@dom/components/form/inputs/form-input';
 import { InputType } from '@dom/components/form/models';
 import { FormErrorService } from '@dom/components/form/services';
 import { FormServerError } from '@dom/components/form/types';
-import { DEFAULT_EMAIL } from '../../../shared/tokens';
+import { DEFAULT_EMAIL } from '../../shared/tokens';
 
 interface LoginForm {
   email: FormControl<string>;

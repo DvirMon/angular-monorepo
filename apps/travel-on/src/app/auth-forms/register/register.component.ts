@@ -6,7 +6,7 @@ import {
   Injector,
   input,
   output,
-  WritableSignal
+  WritableSignal,
 } from '@angular/core';
 import {
   FormControl,
@@ -19,10 +19,13 @@ import {
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent } from '@angular/material/card';
 
-import { Register } from '../../index';
+import { Register } from '../../auth/index';
 import { DividerHeaderComponent } from '@dom/components/divider-header';
 import { FormInputComponent } from '@dom/components/form/inputs/form-input';
-import { getFormKeys, handleServerErrorEffect } from '@dom/components/form/helpers';
+import {
+  getFormKeys,
+  handleServerErrorEffect,
+} from '@dom/components/form/helpers';
 import { FormServerError } from '@dom/components/form/types';
 import { InputType } from '@dom/components/form/models';
 
@@ -67,8 +70,7 @@ export class RegisterFormComponent {
     password: InputType.PASSWORD,
     email: InputType.EMAIL,
   };
-  
-  
+
   register = output<Register>();
 
   constructor() {
@@ -80,7 +82,6 @@ export class RegisterFormComponent {
       this.serverError,
       this.registerFormGroup
     );
-
   }
 
   private _buildRegisterForm(): FormGroup<RegisterForm> {
