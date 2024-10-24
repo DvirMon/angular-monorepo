@@ -1,7 +1,17 @@
 {
   "name": "@dom",
   "version": "0.0.1",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/material": "^18.0.0",
+    "@angular/router": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/animations": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@ngrx/signals": "^18.0.0",
+    "rxjs": "^7.8.1",
+    "@ngrx/operators": "^18.0.0"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
   },
