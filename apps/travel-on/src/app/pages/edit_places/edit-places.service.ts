@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Places, DestinationItem, Activity } from '../../places/places.model';
+import { Activity, DestinationItem, Places } from '../../places/places.model';
+import { inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 export class EditPlacesService {
-  constructor(private http: HttpClient) {}
+
+  http = inject(HttpClient);
 
   /**
    * Loads a specific place by ID using an HTTP GET request.

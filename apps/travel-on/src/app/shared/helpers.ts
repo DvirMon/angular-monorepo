@@ -6,9 +6,8 @@ import {
   trigger,
 } from '@angular/animations';
 import { Injector, inject, runInInjectionContext } from '@angular/core';
-import { OperatorFunction, catchError, map, throwError } from 'rxjs';
-import { StorageKey } from './constants';
 import { Router } from '@angular/router';
+import { StorageKey } from './constants';
 
 function setRecordItem(
   record: Record<string, boolean>,
