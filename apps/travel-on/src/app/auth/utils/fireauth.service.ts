@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
 import { getApp, getApps, initializeApp } from 'firebase/app';
 import { defer, from, Observable, switchMap } from 'rxjs';
-import { UserCredential } from 'firebase/auth';
+import { Credential } from './auth.model';
 
 export interface FirebaseError {
   code: string;
@@ -45,7 +45,7 @@ export class FireAuthService {
   public createUserWithEmailAndPassword$(
     email: string,
     password: string
-  ): Observable<UserCredential> {
+  ): Observable<Credential> {
     return this.#loadFirebaseAuth().pipe(
       switchMap(({ getAuth, createUserWithEmailAndPassword }) => {
         const auth = getAuth();
@@ -57,7 +57,7 @@ export class FireAuthService {
     );
   }
   // Check if the provided email link is a valid sign-in link.
-  public signInWithGoogle$(): Observable<UserCredential> {
+  public signInWithGoogle$(): Observable<Credential> {
     return this.#loadFirebaseAuth().pipe(
       switchMap(({ getAuth, signInWithPopup, GoogleAuthProvider }) => {
         const auth = getAuth();
@@ -68,7 +68,7 @@ export class FireAuthService {
     );
   }
 
-  // public signInWithGoogle$(): Observable<UserCredential> {
+  // public signInWithGoogle$(): Observable<Credential> {
   //   const auth = getAuth();
   //   const provider = new GoogleAuthProvider();
   //   provider.setCustomParameters({ prompt: 'select_account' });
@@ -79,7 +79,7 @@ export class FireAuthService {
   public signInWithEmailAndPassword$(
     email: string,
     password: string
-  ): Observable<UserCredential> {
+  ): Observable<Credential> {
     return this.#loadFirebaseAuth().pipe(
       switchMap(({ getAuth, signInWithEmailAndPassword }) => {
         const auth = getAuth();

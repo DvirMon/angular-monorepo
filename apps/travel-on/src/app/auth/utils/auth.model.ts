@@ -1,4 +1,5 @@
 import { FormServerError } from "@dom/components/form/types";
+import { UserCredential } from "firebase/auth";
 
 export interface User {
   uid: string;
@@ -52,3 +53,6 @@ export enum AuthEvent {
 export interface AuthServerError extends FormServerError {
   event: AuthEvent;
 }
+
+export type Credential = UserCredential
+

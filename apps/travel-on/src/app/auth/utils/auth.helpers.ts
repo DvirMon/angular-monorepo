@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
 import { Injector, inject, runInInjectionContext } from '@angular/core';
-import { UserCredential, User as UserFirebase } from 'firebase/auth';
+import { User as UserFirebase } from 'firebase/auth';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormServerError } from '@dom/components/form/types';
 import { Observable, OperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from './auth.model';
+import { Credential, User } from './auth.model';
 
 // Function to generate a valid URL for the email verification link
 export function generateVerificationLink(
@@ -40,17 +40,17 @@ export function getUserEmailFromUrl(
 }
 
 export function mapToUID() {
-  return (source: Observable<UserCredential>): Observable<string> =>
-    source.pipe(map((credential: UserCredential) => credential.user.uid));
+  return (source: Observable<Credential>): Observable<string> =>
+    source.pipe(map((credential: Credential) => credential.user.uid));
 }
 
 export function mapFirebaseCredentials(): OperatorFunction<
-  UserCredential,
+  Credential,
   User
 > {
-  return (source: Observable<UserCredential>): Observable<User> =>
+  return (source: Observable<Credential>): Observable<User> =>
     source.pipe(
-      map((credential: UserCredential) => credential.user),
+      map((credential: Credential) => credential.user),
       map((userFirebase: UserFirebase) => {
         const user = mapUser(userFirebase); // Replace with your _mapUser logic
         return user;

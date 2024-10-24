@@ -1,4 +1,3 @@
-import { UserCredential } from 'firebase/auth';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, WritableStateSource } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -9,6 +8,7 @@ import { ResetService } from '../../pages/reset/reset.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
 import {
   AuthEvent,
+  Credential,
   FirebaseError,
   mapFirebaseCredentials,
   Register,
@@ -102,7 +102,7 @@ export function confirmPasswordReset(
 export function authenticate<T>(
   store: WritableStateSource<AuthState>,
   event: AuthEvent,
-  authActionFn: (value: T) => Observable<UserCredential>
+  authActionFn: (value: T) => Observable<Credential>
 ) {
   return rxMethod<T>(
     pipe(

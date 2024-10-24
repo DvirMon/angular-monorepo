@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserCredential, User as FirebaseUser } from 'firebase/auth';
+import { User as FirebaseUser } from 'firebase/auth';
 import { Observable, of, switchMap, throwError } from 'rxjs';
 import {
+  Credential,
   FireAuthService,
   mapUser,
   SignInEvent,
@@ -17,7 +18,7 @@ interface EmailPasswordData {
   password: string;
 }
 
-type SignInStrategy = (data?: unknown) => Observable<UserCredential>;
+type SignInStrategy = (data?: unknown) => Observable<Credential>;
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +43,7 @@ export class SignInService {
     return of(method).pipe(
       switchMap((method: SignInMethod) =>
         this.executeSignInStrategy(method, data).pipe(
-          switchMap((credential: UserCredential) =>
+          switchMap((credential: Credential) =>
             this.processUserCredential(credential)
           )
         )
@@ -56,7 +57,7 @@ export class SignInService {
   private executeSignInStrategy(
     method: SignInMethod,
     data: unknown
-  ): Observable<UserCredential> {
+  ): Observable<Credential> {
     const strategy = this.#signInStrategies.get(method);
     if (strategy) {
       return strategy(data);
@@ -68,9 +69,9 @@ export class SignInService {
   /**
    * Processes the user credential: fetches the user from the database or creates a new entry if necessary.
    */
-  private processUserCredential(credential: UserCredential): Observable<User> {
+  private processUserCredential(credential: Credential): Observable<User> {
     const firebaseUser = credential.user;
-    const providerId  = credential.providerId
+    const providerId = credential.providerId;
 
     return this.#fetchOrCreateUser$(firebaseUser, providerId);
   }
@@ -78,10 +79,12 @@ export class SignInService {
   /**
    * Fetches the user from the database or creates a new user if they don't exist.
    */
-  #fetchOrCreateUser$(firebaseUser: FirebaseUser, providerId : string | null): Observable<User> {
+  #fetchOrCreateUser$(
+    firebaseUser: FirebaseUser,
+    providerId: string | null
+  ): Observable<User> {
     return this.#userService.getUserById(firebaseUser.uid).pipe(
       switchMap((existingUser: User | null) => {
-
         if (existingUser) {
           return of(existingUser);
         } else {
