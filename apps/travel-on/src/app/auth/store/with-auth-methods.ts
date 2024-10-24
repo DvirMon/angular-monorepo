@@ -17,7 +17,7 @@ import {
   register,
   signIn,
 } from './store.helpers';
-import { SignInService } from '../../pages/login/sign-in.service';
+import { SignInService } from '../utils/sign-in.service';
 
 export function withAuthMethods<_>() {
   return signalStoreFeature(

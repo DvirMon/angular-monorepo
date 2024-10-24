@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
-import { UserCredential } from '@angular/fire/auth';
+import { inject, Injectable } from '@angular/core';
 import { defer, from, Observable, switchMap } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { getApps, initializeApp } from '@angular/fire/app';
+import { Auth, getAuth, GoogleAuthProvider, signInWithPopup, UserCredential } from '@angular/fire/auth';
 
 export interface FirebaseError {
   code: string;
@@ -11,9 +13,11 @@ export interface FirebaseError {
 
 @Injectable({ providedIn: 'root' })
 export class FireAuthService {
+  #auth = inject(Auth)
+
   #loadFirebaseAuth() {
     return from(
-      import('firebase/auth').then((firebase) => {
+      import('@angular/fire/auth').then((firebase) => {
         return firebase;
       })
     );
@@ -34,15 +38,22 @@ export class FireAuthService {
     );
   }
   // Check if the provided email link is a valid sign-in link.
+  // public signInWithGoogle$(): Observable<UserCredential> {
+  //   return this.#loadFirebaseAuth().pipe(
+  //     switchMap(({ getAuth, signInWithPopup, GoogleAuthProvider }) => {
+  //       const auth = getAuth();
+  //       const provider = new GoogleAuthProvider();
+  //       provider.setCustomParameters({ prompt: 'select_account' });
+  //       return from(signInWithPopup(auth, provider));
+  //     })
+  //   );
+  // }
+
   public signInWithGoogle$(): Observable<UserCredential> {
-    return this.#loadFirebaseAuth().pipe(
-      switchMap(({ getAuth, signInWithPopup, GoogleAuthProvider }) => {
-        const auth = getAuth();
-        const provider = new GoogleAuthProvider();
-        provider.setCustomParameters({ prompt: 'select_account' });
-        return from(signInWithPopup(auth, provider));
-      })
-    );
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: 'select_account' });
+    return from(signInWithPopup(auth, provider));
   }
 
   // Sign in with email and password.

@@ -3,7 +3,6 @@ import { tapResponse } from '@ngrx/operators';
 import { patchState, WritableStateSource } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { exhaustMap, map, Observable, pipe, switchMap } from 'rxjs';
-import { SignInService } from '../../pages/login/sign-in.service';
 import { RegisterService } from '../../pages/register/register.service';
 import { ResetService } from '../../pages/reset/reset.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
@@ -20,6 +19,7 @@ import { UserService } from '../utils/user.service';
 import { AuthState } from './auth.state';
 import { setAuthError, setUser } from './store.setters';
 import { debugTap } from '../../shared/operators/debug';
+import { SignInService } from '../utils/sign-in.service';
 
 export function signIn(
   service: SignInService,
