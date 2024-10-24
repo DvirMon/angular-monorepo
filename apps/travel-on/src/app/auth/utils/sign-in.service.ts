@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserCredential, User as FirebaseUser } from '@angular/fire/auth';
+import { UserCredential, User as FirebaseUser } from 'firebase/auth';
 import { Observable, of, switchMap, throwError } from 'rxjs';
 import {
   FireAuthService,

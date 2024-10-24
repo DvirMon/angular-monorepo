@@ -6,7 +6,6 @@ import {
   trigger,
 } from '@angular/animations';
 import { Injector, inject, runInInjectionContext } from '@angular/core';
-import { QuerySnapshot } from '@angular/fire/firestore';
 import { OperatorFunction, catchError, map, throwError } from 'rxjs';
 import { StorageKey } from './constants';
 import { Router } from '@angular/router';
@@ -61,25 +60,7 @@ export function clearStorage(
 }
 
 // Define the custom RxJS operator
-export function mapQuerySnapshotDoc<T>(): OperatorFunction<
-  QuerySnapshot<T>,
-  T
-> {
-  return (source$) =>
-    source$.pipe(
-      map((querySnapshot) => {
-        if (querySnapshot.docs.length > 0) {
-          const doc = querySnapshot.docs[0];
-          return {
-            ...doc.data(),
-            id: doc.id,
-          } as T;
-        }
-        throw new Error('Document not found'); // Throw an error when no document is found
-      }),
-      catchError((error) => throwError(() => new Error(error)))
-    );
-}
+
 
 export function navigate(path: string, injector?: Injector): void {
   runInInjectionContext(injector || inject(Injector), () => {

@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { DateTimestampPipe } from '../../shared/pipes/date.pipe';
 import {
   ButtonSelectionChangedEvent,
   PlaceCardButtonComponent,
@@ -30,7 +29,6 @@ export interface SelectChangedEvent {
   imports: [
     CommonModule,
     NgOptimizedImage,
-    DateTimestampPipe,
     MatCardModule,
     PlaceCardButtonComponent,
     MatIconModule,

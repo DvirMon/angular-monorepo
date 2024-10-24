@@ -23,10 +23,10 @@
     </mat-card-content>
     <mat-card-content>
       <span>
-        {{ place().takeoff | dateTimestampPipe : 'EEEE, MMMM d' }}
+        {{ place().takeoff | date : 'EEEE, MMMM d' }}
       </span>
       <span>
-        {{ place().landing | dateTimestampPipe : 'EEEE, MMMM d' }}
+        {{ place().landing | date : 'EEEE, MMMM d' }}
       </span>
     </mat-card-content>
   </mat-card>
@@ -71,11 +71,11 @@
       <section class="schedule">
         <span>
           <b>Takeoff:</b>
-          {{ place().takeoff | dateTimestampPipe : 'EEEE, MMMM d, h:mm a' }}
+          {{ place().takeoff | date : 'EEEE, MMMM d, h:mm a' }}
         </span>
         <span>
           <b>Landing:</b>
-          {{ place().landing | dateTimestampPipe : 'EEEE, MMMM d, h:mm a' }}
+          {{ place().landing | date : 'EEEE, MMMM d, h:mm a' }}
         </span>
       </section>
     </mat-card-content>

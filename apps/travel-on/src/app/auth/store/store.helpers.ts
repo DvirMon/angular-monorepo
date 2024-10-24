@@ -1,4 +1,4 @@
-import { UserCredential } from '@angular/fire/auth';
+import { UserCredential } from 'firebase/auth';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, WritableStateSource } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -32,21 +32,7 @@ export function signIn(
     )
   );
 }
-//   return rxMethod<SignInEvent>(
-//     pipe(
-//       switchMap((value) =>
-//         service.signIn$(value).pipe(
-//           switchMap((value: UserCredential) =>
-//             from(value.user.getIdToken()).pipe(
-//               debugTap('Token'),
-//               switchMap((token: string) => service.getUser(token))
-//             )
-//           )
-//         )
-//       )
-//     )
-//   );
-// }
+
 
 export function register(
   service: RegisterService,
