@@ -4,6 +4,7 @@ import { UserCredential } from '@angular/fire/auth';
 import { Observable, of, switchMap } from 'rxjs';
 import { FireAuthService, SignInEvent, SignInMethod, User } from '../../auth';
 import { API_URL } from '../../shared/tokens';
+import { UserService } from '../../auth/utils/user.service';
 
 
 interface EmailPasswordData {
@@ -18,6 +19,8 @@ type SignInStrategy = (data?: unknown) => Observable<UserCredential>;
 })
 export class SignInService {
   readonly #fireAuthService = inject(FireAuthService);
+
+  readonly #userService = inject(UserService);
 
   readonly #signInStrategies: Map<SignInMethod, SignInStrategy> = new Map();
 
@@ -59,4 +62,15 @@ export class SignInService {
       return this.#fireAuthService.signInWithEmailAndPassword$(email, password);
     });
   }
+
+
+  #signInWithGoogle() {
+    this.#fireAuthService.signInWithGoogle$();
+  }
 }
+
+// Google sign in 
+// 1. Sign in with Google
+// 2. find out if the user exists in database
+// 3. if not, create a new user
+

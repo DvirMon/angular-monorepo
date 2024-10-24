@@ -19,6 +19,7 @@ import {
 import { UserService } from '../utils/user.service';
 import { AuthState } from './auth.state';
 import { setAuthError, setUser } from './store.setters';
+import { debugTap } from '../../shared/operators/debug';
 
 export function signIn(
   service: SignInService,
@@ -33,7 +34,10 @@ export function signIn(
           switchMap((uid: string) =>
 
             // TODO : save user after gmail login?
-            service.getUser(uid).pipe(handleLoadUserResponse(store, event))
+            service.getUser(uid).pipe(
+              
+              debugTap('user'),
+              handleLoadUserResponse(store, event))
           )
         )
       )
@@ -69,19 +73,19 @@ export function register(
     )
   );
 }
-export function loadUserById(
-  service: UserService,
-  store: WritableStateSource<AuthState>,
-  event: AuthEvent
-) {
-  return rxMethod<string>(
-    pipe(
-      switchMap((userId) =>
-        service.loadUserById$(userId).pipe(handleLoadUserResponse(store, event))
-      )
-    )
-  );
-}
+// export function loadUserById(
+//   service: UserService,
+//   store: WritableStateSource<AuthState>,
+//   event: AuthEvent
+// ) {
+//   return rxMethod<string>(
+//     pipe(
+//       switchMap((userId) =>
+//         service.loadUserById$(userId).pipe(handleLoadUserResponse(store, event))
+//       )
+//     )
+//   );
+// }
 
 /*************  ✨ Codeium Command ⭐  *************/
 /**

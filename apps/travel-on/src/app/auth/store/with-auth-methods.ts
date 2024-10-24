@@ -14,7 +14,6 @@ import { UserService } from '../utils/user.service';
 import { AuthState, initialState } from './auth.state';
 import {
   confirmPasswordReset,
-  loadUserById,
   register,
   signIn,
 } from './store.helpers';
@@ -42,7 +41,7 @@ export function withAuthMethods<_>() {
           resetService,
           dialog
         ),
-        loadUserById: loadUserById(userService, store, AuthEvent.LOGIN),
+        // loadUserById: loadUserById(userService, store, AuthEvent.LOGIN),
       })
     ),
     withMethods((store, service = inject(LoginService)) => ({
