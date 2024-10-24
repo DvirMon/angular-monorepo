@@ -7,7 +7,6 @@ import { AuthDialogEvent, authDialogMap } from '../../auth-dialogs';
 import { RegisterService } from '../../pages/register/register.service';
 import { ResetService } from '../../pages/reset/reset.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
-import { debugTap } from '../../shared/operators/debug';
 import {
   AuthEvent,
   FirebaseError,
@@ -28,9 +27,7 @@ export function signIn(
   return rxMethod<SignInEvent>(
     pipe(
       switchMap((value) =>
-        service
-          .signIn$(value)
-          .pipe(debugTap('user'), handleLoadUserResponse(store, event))
+        service.signIn$(value).pipe(handleLoadUserResponse(store, event))
       )
     )
   );
@@ -77,7 +74,6 @@ export function register(
 //     )
 //   );
 // }
-
 
 export function handleLoadUserResponse(
   store: WritableStateSource<AuthState>,
