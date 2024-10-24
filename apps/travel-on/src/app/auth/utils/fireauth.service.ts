@@ -1,8 +1,13 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  UserCredential,
+} from '@angular/fire/auth';
+import { environment } from './../../../environments/environment';
+import { getApp, getApps, initializeApp } from 'firebase/app';
 import { defer, from, Observable, switchMap } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { getApps, initializeApp } from '@angular/fire/app';
-import { Auth, getAuth, GoogleAuthProvider, signInWithPopup, UserCredential } from '@angular/fire/auth';
 
 export interface FirebaseError {
   code: string;
@@ -13,13 +18,31 @@ export interface FirebaseError {
 
 @Injectable({ providedIn: 'root' })
 export class FireAuthService {
-  #auth = inject(Auth)
+  // #auth = inject(Auth)
 
   #loadFirebaseAuth() {
     return from(
-      import('@angular/fire/auth').then((firebase) => {
+      import('firebase/app').then((firebase) => {
+        // Check if Firebase app has already been initialized
+        if (!getApps().length) {
+          // Initialize Firebase if it hasn't been initialized yet
+
+          initializeApp(environment.firebaseConfig);
+        } else {
+          // If already initialized, retrieve the existing instance
+          getApp();
+        }
+
         return firebase;
       })
+    ).pipe(
+      switchMap(() =>
+        from(
+          import('firebase/auth').then((auth) => {
+            return auth;
+          })
+        )
+      )
     );
   }
 
@@ -38,23 +61,23 @@ export class FireAuthService {
     );
   }
   // Check if the provided email link is a valid sign-in link.
-  // public signInWithGoogle$(): Observable<UserCredential> {
-  //   return this.#loadFirebaseAuth().pipe(
-  //     switchMap(({ getAuth, signInWithPopup, GoogleAuthProvider }) => {
-  //       const auth = getAuth();
-  //       const provider = new GoogleAuthProvider();
-  //       provider.setCustomParameters({ prompt: 'select_account' });
-  //       return from(signInWithPopup(auth, provider));
-  //     })
-  //   );
-  // }
-
   public signInWithGoogle$(): Observable<UserCredential> {
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider();
-    provider.setCustomParameters({ prompt: 'select_account' });
-    return from(signInWithPopup(auth, provider));
+    return this.#loadFirebaseAuth().pipe(
+      switchMap(({ getAuth, signInWithPopup, GoogleAuthProvider }) => {
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+        return from(signInWithPopup(auth, provider));
+      })
+    );
   }
+
+  // public signInWithGoogle$(): Observable<UserCredential> {
+  //   const auth = getAuth();
+  //   const provider = new GoogleAuthProvider();
+  //   provider.setCustomParameters({ prompt: 'select_account' });
+  //   return from(signInWithPopup(auth, provider));
+  // }
 
   // Sign in with email and password.
   public signInWithEmailAndPassword$(

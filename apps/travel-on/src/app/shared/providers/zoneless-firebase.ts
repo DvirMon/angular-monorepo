@@ -1,21 +1,9 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
 import { Auth, connectAuthEmulator, getAuth } from 'firebase/auth';
-import {
-  Firestore,
-  connectFirestoreEmulator,
-  getFirestore,
-} from 'firebase/firestore';
-
-const [injectFn, provideFn] = createNoopInjectionToken<number, true>(
-  'description',
-  { multi: true }
-);
+import { createNoopInjectionToken } from 'ngxtension/create-injection-token';
 
 export const [firebaseApp, provideFirebaseApp] =
   createNoopInjectionToken<FirebaseApp>('[Firebase] App');
-
-export const [firestore, provideFirestore] =
-  createNoopInjectionToken<Firestore>('[Firebase] Firestore');
 
 export const [firebaseAuth, provideFirebaseAuth] =
   createNoopInjectionToken<Auth>('[Firebase] Auth');
@@ -49,18 +37,6 @@ export function provideZonelessFirebase({ options, features }: FirebaseConfig) {
             auth,
             `http://${emulators.host}:${emulators.port}`
           );
-        }
-
-        break;
-      }
-      case 'firestore': {
-        const firestore = getFirestore(app);
-        providers.push(provideFirestore(firestore));
-
-        const emulators = features[feature]?.emulators;
-
-        if (emulators) {
-          connectFirestoreEmulator(firestore, emulators.host, emulators.port);
         }
 
         break;

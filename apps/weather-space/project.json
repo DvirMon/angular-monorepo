@@ -13,7 +13,7 @@
         "outputPath": "public/weather-space/browser",
         "index": "apps/weather-space/src/index.html",
         "main": "apps/weather-space/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/weather-space/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
