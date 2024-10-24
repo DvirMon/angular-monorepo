@@ -58,9 +58,9 @@ export function mapFirebaseCredentials(): OperatorFunction<
     );
 }
 
-function mapUser(user: UserFirebase): User {
+export function mapUser(user: UserFirebase): User {
   return {
-    userId: user.uid,
+    uid: user.uid,
     displayName: user.displayName,
     email: user.email,
     emailVerified: user.emailVerified,

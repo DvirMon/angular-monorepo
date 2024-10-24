@@ -2,11 +2,12 @@ import { UserCredential } from '@angular/fire/auth';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, WritableStateSource } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { exhaustMap, map, Observable, pipe, switchMap } from 'rxjs';
+import { exhaustMap, Observable, pipe, switchMap } from 'rxjs';
+import { AuthDialogEvent, authDialogMap } from '../../auth-dialogs';
 import { RegisterService } from '../../pages/register/register.service';
 import { ResetService } from '../../pages/reset/reset.service';
 import { DialogService } from '../../shared/dialog/dialog.service';
-import { AuthDialogEvent, authDialogMap } from '../../auth-dialogs';
+import { debugTap } from '../../shared/operators/debug';
 import {
   AuthEvent,
   FirebaseError,
@@ -15,11 +16,9 @@ import {
   SignInEvent,
   User,
 } from '../utils';
-import { UserService } from '../utils/user.service';
+import { SignInService } from '../utils/sign-in.service';
 import { AuthState } from './auth.state';
 import { setAuthError, setUser } from './store.setters';
-import { debugTap } from '../../shared/operators/debug';
-import { SignInService } from '../utils/sign-in.service';
 
 export function signIn(
   service: SignInService,
@@ -29,15 +28,9 @@ export function signIn(
   return rxMethod<SignInEvent>(
     pipe(
       switchMap((value) =>
-        service.signIn$(value).pipe(
-          map((credential: UserCredential) => credential.user.uid),
-          switchMap((uid: string) =>
-            // TODO : save user after gmail login?
-            service
-              .getUser(uid)
-              .pipe(debugTap('user'), handleLoadUserResponse(store, event))
-          )
-        )
+        service
+          .signIn$(value)
+          .pipe(debugTap('user'), handleLoadUserResponse(store, event))
       )
     )
   );
@@ -85,18 +78,6 @@ export function register(
 //   );
 // }
 
-/*************  ✨ Codeium Command ⭐  *************/
-/**
- * TapResponse operator that handles the response from loading a user.
- *
- * In case of a successful response, it sets the user in the store.
- * In case of an error, it sets the error in the store.
- *
- * @param store The auth store.
- * @param event The event that triggered the user load.
- * @returns A tapResponse operator that handles the response.
- */
-/******  a84524d5-839e-4495-b35c-9e400f1e0a07  *******/
 
 export function handleLoadUserResponse(
   store: WritableStateSource<AuthState>,

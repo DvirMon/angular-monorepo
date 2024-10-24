@@ -10,7 +10,7 @@ export class UserService {
 
   readonly #apiUrl = inject(API_URL);
 
-  public getUser(idToken: string) {
+  public getUserById(idToken: string) {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${idToken}`,
     });

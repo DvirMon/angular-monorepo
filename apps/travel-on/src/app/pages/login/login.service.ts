@@ -20,6 +20,6 @@ export class LoginService {
 
   public onLogin(user: User): void {
     setToStorage(StorageKey.LOGGED, true);
-    this.#router.navigateByUrl('places/' + user.userId);
+    this.#router.navigateByUrl('places/' + user.uid);
   }
 }

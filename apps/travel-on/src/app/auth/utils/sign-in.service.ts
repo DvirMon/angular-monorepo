@@ -1,11 +1,16 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserCredential } from '@angular/fire/auth';
-import { Observable, of, switchMap } from 'rxjs';
-import { FireAuthService, SignInEvent, SignInMethod, User } from '../../auth';
-import { API_URL } from '../../shared/tokens';
+import { UserCredential, User as FirebaseUser } from '@angular/fire/auth';
+import { Observable, of, switchMap, throwError } from 'rxjs';
+import {
+  FireAuthService,
+  mapUser,
+  SignInEvent,
+  SignInMethod,
+  User,
+} from '../../auth';
 import { UserService } from '../../auth/utils/user.service';
-
+import { API_URL } from '../../shared/tokens';
 
 interface EmailPasswordData {
   email: string;
@@ -32,24 +37,64 @@ export class SignInService {
     this.#setSignInMap();
   }
   // Sign in with different authentication methods based on the provided event.
-  public signIn$(event: SignInEvent): Observable<UserCredential> {
+  public signIn$(event: SignInEvent): Observable<User> {
     const { method, data } = event;
-
     return of(method).pipe(
-      switchMap((method: SignInMethod) => {
-        const strategy = this.#signInStrategies.get(method);
-        return strategy !== undefined
-          ? strategy(data)
-          : of({} as UserCredential);
-      })
+      switchMap((method: SignInMethod) =>
+        this.executeSignInStrategy(method, data).pipe(
+          switchMap((credential: UserCredential) =>
+            this.processUserCredential(credential)
+          )
+        )
+      )
     );
   }
-  public getUser(idToken: string) {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${idToken}`,
-    });
 
-    return this.#http.get<User>(`${this.#apiUrl}/users/profile`, { headers });
+  /**
+   * Executes the sign-in strategy based on the provided method and data.
+   */
+  private executeSignInStrategy(
+    method: SignInMethod,
+    data: unknown
+  ): Observable<UserCredential> {
+    const strategy = this.#signInStrategies.get(method);
+    if (strategy) {
+      return strategy(data);
+    } else {
+      return throwError(() => new Error('Unsupported sign-in method'));
+    }
+  }
+
+  /**
+   * Processes the user credential: fetches the user from the database or creates a new entry if necessary.
+   */
+  private processUserCredential(credential: UserCredential): Observable<User> {
+    const firebaseUser = credential.user;
+    const providerId  = credential.providerId
+
+    return this.#fetchOrCreateUser$(firebaseUser, providerId);
+  }
+
+  /**
+   * Fetches the user from the database or creates a new user if they don't exist.
+   */
+  #fetchOrCreateUser$(firebaseUser: FirebaseUser, providerId : string | null): Observable<User> {
+    return this.#userService.getUserById(firebaseUser.uid).pipe(
+      switchMap((existingUser: User | null) => {
+
+        if (existingUser) {
+          return of(existingUser);
+        } else {
+          // Create a new user if it doesn't exist (for Google sign-in)
+          if (providerId === 'google.com') {
+            const newUser = mapUser(firebaseUser);
+            return this.#userService.saveUser(newUser);
+          }
+          // Handle other cases or throw an error
+          return throwError(() => new Error('User does not exist'));
+        }
+      })
+    );
   }
 
   #setSignInMap() {
@@ -63,14 +108,12 @@ export class SignInService {
     });
   }
 
-
   #signInWithGoogle() {
     this.#fireAuthService.signInWithGoogle$();
   }
 }
 
-// Google sign in 
+// Google sign in
 // 1. Sign in with Google
 // 2. find out if the user exists in database
 // 3. if not, create a new user
-

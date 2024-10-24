@@ -1,7 +1,7 @@
 import { FormServerError } from "@dom/components/form/types";
 
 export interface User {
-  userId: string;
+  uid: string;
   email: string;
   emailVerified: boolean;
   displayName: string;
