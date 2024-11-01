@@ -60,13 +60,9 @@
     </mat-card-header>
     <mat-card-content>
       <section>
-        <dl class="activities-list">
-          @for (activity of place().activities; track $index) {
-          <dt class="activities-item">
-            <span class="activities-text"> # {{ activity }} </span>
-          </dt>
-          }
-        </dl>
+        <ng-container
+          *ngTemplateOutlet="hasActivities() ? activitiesList : noActivities"
+        ></ng-container>
       </section>
       <section class="schedule">
         <span>
@@ -81,4 +77,17 @@
     </mat-card-content>
     <mat-card-footer></mat-card-footer>
   </mat-card>
+</ng-template>
+
+<ng-template #activitiesList>
+  <dl class="activities-list">
+    @for (activity of place().activities; track $index) {
+    <dt class="activities-item">
+      <span class="activities-text"> # {{ activity }} </span>
+    </dt>
+    }
+  </dl>
+</ng-template>
+<ng-template #noActivities>
+  <p>🌴 No activities yet</p>
 </ng-template>

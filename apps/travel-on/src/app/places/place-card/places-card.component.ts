@@ -2,6 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
   output,
@@ -42,6 +43,8 @@ export class PlacesCardComponent {
   place = input.required<Places>();
 
   selected = input.required<boolean>();
+
+  hasActivities = computed(() => this.place().activities.length > 0);
 
   router = inject(Router);
 
