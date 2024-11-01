@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { SkeletonModule } from 'primeng/skeleton';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {SkeletonModule} from 'primeng/skeleton';
 
 @Component({
   selector: 'to-place-skeleton',
@@ -11,4 +11,13 @@ import { SkeletonModule } from 'primeng/skeleton';
   styleUrl: './place-skeleton.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaceSkeletonComponent {}
+export class PlaceSkeletonComponent {
+
+
+  activities = [1, 2, 3];
+
+}
+
+
+
+

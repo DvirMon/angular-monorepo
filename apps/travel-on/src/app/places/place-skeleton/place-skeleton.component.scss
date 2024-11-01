@@ -44,7 +44,8 @@ mat-card.mat-mdc-card.places-skeleton {
   }
 
   section.activities {
-
+    display: flex;
+    gap : 16px;
   }
 
   .button-skeleton {
