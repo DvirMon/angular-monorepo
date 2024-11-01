@@ -1,36 +1,29 @@
 <mat-card class="places-skeleton">
-  <ngx-skeleton-loader
-    class="w-full h-64"
-    [theme]="{ height: '256px' }"
-  ></ngx-skeleton-loader>
+  <!-- Main image skeleton -->
+  <p-skeleton styleClass="w-full" height="256px"></p-skeleton>
 
   <mat-card-header>
+    <!-- Title skeleton -->
     <mat-card-title>
-      <ngx-skeleton-loader
-        [count]="1"
-        [theme]="{ height: '20px', width: '250px' }"
-      ></ngx-skeleton-loader>
+      <p-skeleton styleClass="title-skeleton" height="20px" width="250px"></p-skeleton>
     </mat-card-title>
 
+    <!-- Button skeleton with circle appearance -->
     <div class="button-skeleton">
-      <ngx-skeleton-loader appearance="circle"></ngx-skeleton-loader>
+      <p-skeleton shape="circle" size="32px"></p-skeleton>
     </div>
   </mat-card-header>
 
   <mat-card-content>
     <section class="activities">
-      <ngx-skeleton-loader
-        [theme]="{ height: '32px', width: '100px', borderRadius: '24px' }"
-      ></ngx-skeleton-loader>
+      <!-- Badge-style skeleton for activities -->
+      <p-skeleton height="32px" width="100px" borderRadius="24px"></p-skeleton>
     </section>
 
     <section class="schedule">
-      <ngx-skeleton-loader
-        [theme]="{ height: '14px', width: '180px' }"
-      ></ngx-skeleton-loader>
-      <ngx-skeleton-loader
-        [theme]="{ height: '14px', width: '180px' }"
-      ></ngx-skeleton-loader>
+      <!-- Line skeletons for schedule -->
+      <p-skeleton height="14px" width="180px"></p-skeleton>
+      <p-skeleton height="14px" width="180px"></p-skeleton>
     </section>
   </mat-card-content>
 

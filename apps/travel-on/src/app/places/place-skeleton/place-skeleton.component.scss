@@ -1,5 +1,9 @@
 @use 'variables' as main;
 
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+
+
 mat-card.mat-mdc-card.places-skeleton {
   img.mat-mdc-card-image {
     position: relative !important;
@@ -7,9 +11,9 @@ mat-card.mat-mdc-card.places-skeleton {
 
   > mat-card-header.mat-mdc-card-header {
     justify-content: space-between;
-    align-items: flex-end;
-    gap: main.spacing(2); 
-    padding: 0px main.spacing(2); 
+    align-items: center;
+    gap: main.spacing(2);
+    padding: main.spacing(1) main.spacing(2);
 
     > div.mat-mdc-card-header-text {
       display: flex;
@@ -28,19 +32,19 @@ mat-card.mat-mdc-card.places-skeleton {
   .mat-mdc-card-content {
     display: flex;
     flex-direction: column;
-    gap: main.spacing(2); 
-    padding: main.spacing(2); 
-    padding-top: main.spacing(1); 
+    gap: main.spacing(2);
+    padding: main.spacing(2);
+    padding-top: main.spacing(1);
   }
 
   section.schedule {
     display: flex;
     flex-direction: column;
-    gap: main.spacing(1); 
+    gap: main.spacing(1);
   }
 
   section.activities {
-    
+
   }
 
   .button-skeleton {

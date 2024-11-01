@@ -38,7 +38,7 @@ export class PlacesPageComponent implements OnInit {
   #injector = inject(Injector);
   #store = inject(AppStore);
   #layout = inject(PlacesPageService);
-  
+
 
   userId = input.required<string>();
 
@@ -55,8 +55,8 @@ export class PlacesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.#store.loadPlaces();
-    this.#store.loadFavorites(this.userId);
+    // this.#store.loadPlaces();
+    // this.#store.loadFavorites(this.userId);
   }
 
   onSelectionChanged(event: SelectionListChange): void {
