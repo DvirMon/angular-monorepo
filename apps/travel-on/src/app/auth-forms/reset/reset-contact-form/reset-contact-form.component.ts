@@ -1,4 +1,4 @@
-import { JsonPipe, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import {
   Component,
   Injector,
@@ -19,11 +19,11 @@ import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 
 import { DividerHeaderComponent } from '@dom/components/divider-header';
-import { FormInputComponent } from '@dom/components/form/inputs/form-input';
 import {
   getFormKeys,
   handleServerErrorEffect,
 } from '@dom/components/form/helpers';
+import { FormInputComponent } from '@dom/components/form/inputs/form-input';
 import { FormServerError } from '@dom/components/form/types';
 
 interface ResetContactForm {
@@ -36,7 +36,6 @@ interface ResetContactForm {
   imports: [
     ReactiveFormsModule,
     TitleCasePipe,
-    JsonPipe,
     MatCard,
     MatCardContent,
     MatButton,

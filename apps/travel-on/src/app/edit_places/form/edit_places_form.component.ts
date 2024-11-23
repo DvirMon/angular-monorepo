@@ -1,4 +1,4 @@
-import { JsonPipe, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +20,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Activity, Places } from '../../places/places.model';
 import { OptionTestComponent } from '../option-test.component';
-import { DisableIfMaxSelectedDirective } from './disable-max-selected.directive';
 import { compareString } from './form.validators';
 import { PlaceForm, PlaceFormService } from './place-form.service';
 
@@ -29,8 +28,6 @@ import { PlaceForm, PlaceFormService } from './place-form.service';
   selector: 'to-edit-places-form',
   standalone: true,
   imports: [
-    // NgFor,
-    JsonPipe,
     TitleCasePipe,
     FormsModule,
     ReactiveFormsModule,
@@ -41,7 +38,6 @@ import { PlaceForm, PlaceFormService } from './place-form.service';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    DisableIfMaxSelectedDirective,
     OptionTestComponent
   ],
   templateUrl: './edit_places_form.component.html',

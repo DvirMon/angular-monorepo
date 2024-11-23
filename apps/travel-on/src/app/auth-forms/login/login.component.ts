@@ -1,4 +1,4 @@
-import { JsonPipe, NgOptimizedImage, TitleCasePipe } from '@angular/common';
+import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,14 +18,7 @@ import {
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
-import {
-  MatError,
-  MatFormField,
-  MatHint,
-  MatLabel,
-} from '@angular/material/form-field';
 import { MatIcon, MatIconRegistry } from '@angular/material/icon';
-import { MatInput } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -52,18 +45,12 @@ interface LoginForm {
   selector: 'to-login-form',
   standalone: true,
   imports: [
-    JsonPipe,
     ReactiveFormsModule,
     NgOptimizedImage,
     MatSlideToggleModule,
     MatCard,
     MatCardHeader,
     MatCardContent,
-    MatFormField,
-    MatLabel,
-    MatError,
-    MatHint,
-    MatInput,
     MatButton,
     MatIcon,
     TitleCasePipe,

@@ -1,4 +1,4 @@
-import { JsonPipe, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { Component, WritableSignal, inject, output } from '@angular/core';
 import {
   FormControl,
@@ -10,9 +10,9 @@ import {
 import { MatButton } from '@angular/material/button';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
-import { FormInputComponent } from '@dom/components/form/inputs/form-input';
 import { DividerHeaderComponent } from '@dom/components/divider-header';
 import { getFormKeys } from '@dom/components/form/helpers';
+import { FormInputComponent } from '@dom/components/form/inputs/form-input';
 
 interface ResetPasswordForm {
   newPassword: FormControl<string>;
@@ -24,7 +24,6 @@ interface ResetPasswordForm {
   imports: [
     ReactiveFormsModule,
     TitleCasePipe,
-    JsonPipe,
     MatCard,
     MatCardContent,
     MatButton,

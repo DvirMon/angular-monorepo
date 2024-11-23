@@ -11,12 +11,11 @@ import {
 import { EditPlacesFormComponent } from '../../edit_places/form/edit_places_form.component';
 import { Places } from '../../places/places.model';
 import { EditPlacesService } from './edit-places.service';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'to-edit-places',
   standalone: true,
-  imports: [JsonPipe, EditPlacesFormComponent],
+  imports: [EditPlacesFormComponent],
   templateUrl: './edit_places.component.html',
   styleUrl: './edit_places.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -15,7 +15,6 @@ import {
   PlaceCardButtonComponent,
 } from '../place-card-button/place-card-button.component';
 import { Places } from '../places.model';
-import { MatIconButton } from '@angular/material/button';
 import { Router } from '@angular/router';
 
 export interface SelectChangedEvent {
@@ -33,7 +32,6 @@ export interface SelectChangedEvent {
     MatCardModule,
     PlaceCardButtonComponent,
     MatIconModule,
-    MatIconButton,
   ],
   templateUrl: './places-card.component.html',
   styleUrls: ['./places-card.component.scss'],

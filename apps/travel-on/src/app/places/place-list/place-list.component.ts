@@ -10,7 +10,6 @@ import {
   PlacesCardComponent,
   SelectChangedEvent,
 } from '../place-card/places-card.component';
-import { PlaceSkeletonComponent } from '../place-skeleton/place-skeleton.component';
 import { Places } from '../places.model';
 
 export interface SelectionListChange {
@@ -21,7 +20,7 @@ export interface SelectionListChange {
 @Component({
   selector: 'to-places-list',
   standalone: true,
-  imports: [PlaceSkeletonComponent, PlacesCardComponent],
+  imports: [PlacesCardComponent],
   templateUrl: './place-list.component.html',
   styleUrls: ['./place-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

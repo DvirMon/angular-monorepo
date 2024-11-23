@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -25,7 +24,6 @@ import { PlacesPageService } from './places.service';
   selector: 'to-places',
   standalone: true,
   imports: [
-    JsonPipe,
     PlacesHeaderComponent,
     PlacesListComponent,
     FloatingButtonComponent,
