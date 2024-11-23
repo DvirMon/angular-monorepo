@@ -25,8 +25,7 @@
           "apps/travel-on/src/assets"
         ],
         "styles": [
-          "apps/travel-on/src/styles.scss",
-          "node_modules/primeng/resources/primeng.min.css"
+          "apps/travel-on/src/styles.scss"
         ],
         "scripts": [],
         "stylePreprocessorOptions": {

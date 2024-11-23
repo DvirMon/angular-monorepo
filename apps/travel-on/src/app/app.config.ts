@@ -1,9 +1,9 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   ApplicationConfig,
-  provideExperimentalZonelessChangeDetection
+  provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideErrorService } from './shared/error.service';
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideExperimentalZonelessChangeDetection(),
     provideRouter(appRoutes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([errorInterceptor])),
-    provideAnimations(),
+    provideAnimationsAsync(),
     provideErrorService(),
   ],
 };
